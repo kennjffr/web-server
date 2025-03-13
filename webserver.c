@@ -34,5 +34,17 @@ int main() {
   }
   printf("listening");
 
+  for (;;) {
+    int listensockfd = accept(sockfd, (struct sockaddr *)&address, (struct socklen_t *) &address_len);
+
+    if (listensockfd < 0) {
+      perror("accept fail");
+      continue;
+    }
+    printf("connection accepted\n");
+
+    close(listensockfd);
+  }
+
   return 0;
 }
